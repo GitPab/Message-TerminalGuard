@@ -1,0 +1,14 @@
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.exe
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.deps.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.runtimeconfig.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.runtimeconfig.dev.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.dll
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Release\netcoreapp3.1\Server.pdb
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.AssemblyInfo.cs
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.sourcelink.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.dll
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.pdb
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Release\netcoreapp3.1\Server.genruntimeconfig.cache

@@ -1,0 +1,422 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|d:\\new folder\\csharp-winform-pairing-message-application\\client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\globalconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\globalconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A5A4D8-79F4-46B0-9233-27589F8690BC}|Client-WAN\\Client-WAN.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client-wan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A5A4D8-79F4-46B0-9233-27589F8690BC}|Client-WAN\\Client-WAN.csproj|solutionrelative:client-wan\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A5A4D8-79F4-46B0-9233-27589F8690BC}|Client-WAN\\Client-WAN.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client-wan\\globalconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A5A4D8-79F4-46B0-9233-27589F8690BC}|Client-WAN\\Client-WAN.csproj|solutionrelative:client-wan\\globalconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\server\\inforandomclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|solutionrelative:server\\inforandomclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\server\\clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46B575F0-DFC0-4E00-961B-D988E2F1108C}|Server\\Server.csproj|solutionrelative:server\\clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\onlineuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\onlineuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\historyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\historyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\editaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\editaccountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\chooseavatar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\chooseavatar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\accountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\accountform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\changepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\changepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\loginform.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\loginform.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\login\\forgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\login\\forgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\messagelayout\\commingmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\messagelayout\\commingmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\messagelayout\\goingmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\messagelayout\\goingmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\messagelayout\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\messagelayout\\chatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\client\\mainlayout\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FEED925-5530-458F-9D04-71F5C5D86984}|Client\\Client.csproj|solutionrelative:client\\mainlayout\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "HistoryForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\HistoryForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\HistoryForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\HistoryForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\HistoryForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:42.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FilterForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\FilterForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\FilterForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\FilterForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\FilterForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:42.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GlobalConnect.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\GlobalConnect.cs",
+              "RelativeDocumentMoniker": "Client\\GlobalConnect.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\GlobalConnect.cs",
+              "RelativeToolTip": "Client\\GlobalConnect.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAAwGUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T16:51:21.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Program.cs",
+              "RelativeDocumentMoniker": "Client\\Program.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Program.cs",
+              "RelativeToolTip": "Client\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:09:18.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Clients.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\Clients.cs",
+              "RelativeDocumentMoniker": "Server\\Clients.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\Clients.cs",
+              "RelativeToolTip": "Server\\Clients.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T17:25:59.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\Program.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\Program.cs",
+              "RelativeToolTip": "Server\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8EAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T16:39:53.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GlobalConnect.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client-WAN\\GlobalConnect.cs",
+              "RelativeDocumentMoniker": "Client-WAN\\GlobalConnect.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client-WAN\\GlobalConnect.cs",
+              "RelativeToolTip": "Client-WAN\\GlobalConnect.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAQwBEAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T17:07:34.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client-WAN\\Program.cs",
+              "RelativeDocumentMoniker": "Client-WAN\\Program.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client-WAN\\Program.cs",
+              "RelativeToolTip": "Client-WAN\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T19:52:34.452Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InfoRandomClients.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\InfoRandomClients.cs",
+              "RelativeDocumentMoniker": "Server\\InfoRandomClients.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Server\\InfoRandomClients.cs",
+              "RelativeToolTip": "Server\\InfoRandomClients.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T16:32:56.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\MainForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:43.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OnlineUser.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\OnlineUser.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\OnlineUser.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\OnlineUser.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\OnlineUser.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:48.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EditAccountForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\EditAccountForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\EditAccountForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\EditAccountForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\EditAccountForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:41.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ChooseAvatar.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\ChooseAvatar.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\ChooseAvatar.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\ChooseAvatar.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\ChooseAvatar.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:39.993Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ChangePasswordForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\ChangePasswordForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\ChangePasswordForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\ChangePasswordForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\ChangePasswordForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:35.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AccountForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\AccountForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\AccountForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\AccountForm.cs [Design]",
+              "RelativeToolTip": "Client\\MainLayout\\AccountForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:34.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RegisterForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\RegisterForm.cs",
+              "RelativeDocumentMoniker": "Client\\Login\\RegisterForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\RegisterForm.cs [Design]",
+              "RelativeToolTip": "Client\\Login\\RegisterForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:25.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.cs",
+              "RelativeDocumentMoniker": "Client\\Login\\LoginForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.cs [Design]",
+              "RelativeToolTip": "Client\\Login\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:06:03.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LoginForm.resx",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.resx",
+              "RelativeDocumentMoniker": "Client\\Login\\LoginForm.resx",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.resx",
+              "RelativeToolTip": "Client\\Login\\LoginForm.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-08-26T16:06:01.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ForgotPassword.Designer.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\ForgotPassword.Designer.cs",
+              "RelativeDocumentMoniker": "Client\\Login\\ForgotPassword.Designer.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\ForgotPassword.Designer.cs",
+              "RelativeToolTip": "Client\\Login\\ForgotPassword.Designer.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T16:05:09.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ForgotPassword.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\ForgotPassword.cs",
+              "RelativeDocumentMoniker": "Client\\Login\\ForgotPassword.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\ForgotPassword.cs [Design]",
+              "RelativeToolTip": "Client\\Login\\ForgotPassword.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T15:53:03.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "CommingMessage.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\CommingMessage.cs",
+              "RelativeDocumentMoniker": "Client\\MessageLayout\\CommingMessage.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\CommingMessage.cs [Design]",
+              "RelativeToolTip": "Client\\MessageLayout\\CommingMessage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T15:52:55.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "GoingMessage.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\GoingMessage.cs",
+              "RelativeDocumentMoniker": "Client\\MessageLayout\\GoingMessage.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\GoingMessage.cs [Design]",
+              "RelativeToolTip": "Client\\MessageLayout\\GoingMessage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T15:52:53.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "LoginForm.Designer.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.Designer.cs",
+              "RelativeDocumentMoniker": "Client\\Login\\LoginForm.Designer.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\Login\\LoginForm.Designer.cs",
+              "RelativeToolTip": "Client\\Login\\LoginForm.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T18:59:23.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ChatForm.cs [Design]",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\ChatForm.cs",
+              "RelativeDocumentMoniker": "Client\\MessageLayout\\ChatForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MessageLayout\\ChatForm.cs [Design]",
+              "RelativeToolTip": "Client\\MessageLayout\\ChatForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T15:52:51.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\MainForm.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.cs",
+              "RelativeToolTip": "Client\\MainLayout\\MainForm.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAAADcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T19:02:53.892Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "Client\\MainLayout\\MainForm.Designer.cs",
+              "ToolTip": "D:\\New folder\\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\\Client\\MainLayout\\MainForm.Designer.cs",
+              "RelativeToolTip": "Client\\MainLayout\\MainForm.Designer.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAYwMoAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T19:05:30.21Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

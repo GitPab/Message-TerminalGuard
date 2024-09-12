@@ -1,0 +1,8 @@
+     Tên
+     Giới Tính
+     Ngày Sinh
+     Trạng Thái
+     Login or Logout
+     Path Avatar
+     Email
+     Tiểu Sử

@@ -1,0 +1,28 @@
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.exe
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.dll
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.pdb
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.sourcelink.json
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.dll
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.pdb
+D:\Unity\MoveStopMove_Bach\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.exe
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.dll
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\bin\Debug\netcoreapp3.1\Server.pdb
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.sourcelink.json
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.dll
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.pdb
+D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
