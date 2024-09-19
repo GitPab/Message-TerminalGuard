@@ -28,10 +28,21 @@ namespace Client
         public static Socket chatting = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         // Khóa mã hóa phải là 16, 24 hoặc 32 ký tự
-        private static readonly string key = "1234567890123456"; // 16 ký tự = 128 bit
+        //private static readonly string key = "1234567890123456"; // 16 ký tự = 128 bit
+
+        private static string GetEncryptionKey()
+        {
+            string key = Environment.GetEnvironmentVariable("ENCRYPTION_KEY");
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new InvalidOperationException("Encryption key not found in environment variables.");
+            }
+            return key;
+        }
 
         public static string Encrypt(string plainText)
         {
+            string key = GetEncryptionKey();
             using (Aes aes = Aes.Create())
             {
                 aes.Key = Encoding.UTF8.GetBytes(key);
@@ -55,6 +66,7 @@ namespace Client
 
         public static string Decrypt(string cipherText)
         {
+            string key = GetEncryptionKey();
             using (Aes aes = Aes.Create())
             {
                 aes.Key = Encoding.UTF8.GetBytes(key);

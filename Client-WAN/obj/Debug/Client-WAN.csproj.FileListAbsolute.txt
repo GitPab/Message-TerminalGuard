@@ -24,3 +24,6 @@ D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Client-WAN\obj\Debug\Cl
 D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Client-WAN\obj\Debug\Client-WAN.csproj.CoreCompileInputs.cache
 D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Client-WAN\obj\Debug\Client.exe
 D:\New folder\CSharp-WinForm-PAIRING-MESSAGE-APPLICATION\Client-WAN\obj\Debug\Client.pdb
+C:\Users\Admin\Downloads\Message-TerminalGuard\Message-TerminalGuard\Client-WAN\obj\Debug\Client-WAN.csproj.AssemblyReference.cache
+C:\Users\Admin\Downloads\Message-TerminalGuard\Message-TerminalGuard\Client-WAN\obj\Debug\Client.exe
+C:\Users\Admin\Downloads\Message-TerminalGuard\Message-TerminalGuard\Client-WAN\obj\Debug\Client.pdb

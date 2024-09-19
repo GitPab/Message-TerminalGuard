@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace Server
 {
@@ -14,6 +16,15 @@ namespace Server
     {
         static List<Clients> lstClient;
         static LinkedList<InfoRandomClients> listRandoms;
+        private static string GetEncryptionKey()
+        {
+            string key = Environment.GetEnvironmentVariable("ENCRYPTION_KEY");
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new InvalidOperationException("Encryption key not found in environment variables.");
+            }
+            return key;
+        }
 
         private static void LogoutAllUsers()
         {
@@ -42,37 +53,37 @@ namespace Server
                 return true;
         }
 
-        private static int SendData(Socket a, string nhan)
+        public static int SendData(Socket socket, string send)
         {
-            byte[] data = new byte[1024];
-            data = Encoding.Unicode.GetBytes(nhan);
+            // Mã hóa dữ liệu trước khi gửi
+            string encryptedData = Encrypt(send);
+            byte[] data = Encoding.Unicode.GetBytes(encryptedData);
             int total = 0;
             int size = data.Length;
             int dataleft = size;
             int sent;
-            byte[] datasize = new byte[4];
-            datasize = BitConverter.GetBytes(size);
-            sent = a.Send(datasize);
+            byte[] datasize = BitConverter.GetBytes(size);
+            sent = socket.Send(datasize);
             while (total < size)
             {
-                sent = a.Send(data, total, dataleft, SocketFlags.None);
+                sent = socket.Send(data, total, dataleft, SocketFlags.None);
                 total += sent;
                 dataleft -= sent;
             }
             return total;
         }
 
-        private static string RecieveData(Socket a)
+        public static string RecieveData(Socket socket)
         {
             int recv, total = 0;
             byte[] datasize = new byte[4];
-            recv = a.Receive(datasize, 0, 4, 0);
+            recv = socket.Receive(datasize, 0, 4, 0);
             int size = BitConverter.ToInt32(datasize, 0);
             int dataleft = size;
             byte[] data = new byte[size];
             while (total < size)
             {
-                recv = a.Receive(data, total, dataleft, 0);
+                recv = socket.Receive(data, total, dataleft, 0);
                 if (recv == 0)
                 {
                     data = Encoding.Unicode.GetBytes("exit ");
@@ -81,8 +92,10 @@ namespace Server
                 total += recv;
                 dataleft -= recv;
             }
-            string nhan = Encoding.Unicode.GetString(data);
-            return nhan;
+            // Giải mã dữ liệu sau khi nhận
+            string encryptedData = Encoding.Unicode.GetString(data);
+            Console.WriteLine(encryptedData);
+            return Decrypt(encryptedData);
         }
 
         private static void SendRefreshNoitice()
@@ -127,14 +140,14 @@ namespace Server
             // Đặt biến kiểm tra thông tin tài khoản
             bool check = false;
             // Lưu dữ liệu File tài khoản người dùng
-            string[] tmp = File.ReadAllLines("Account.txt");
+            string[] tmp = LoadAccountData(); // Sử dụng phương thức giải mã
             // Check
+            string hashedInput = HashSHA256(sdt + "-" + matkhau);
             for (int i = 0; i < tmp.Length; i++)
             {
                 if (tmp[i].Equals(""))
                     continue;
-                string[] account = tmp[i].Split('-');
-                if (account[0] == sdt && account[1] == matkhau)
+                if (tmp[i] == hashedInput)
                 {
                     check = true;
                     break;
@@ -196,15 +209,15 @@ namespace Server
             string gioiTinh = info[3];
             string ngaySinh = info[4];
             string matKhau = info[5];
-            // Bắt đầu kiểm tra tài khoản tồn tại hay chưa
+            // Bt đầu kiểm tra tài khoản tồn tại hay chưa
             bool exist = false;
-            string[] allAccount = File.ReadAllLines("Account.txt"); // Đọc danh sách các tài khoản
+            string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
+            string hashedInput = HashSHA256(sdt + "-" + matKhau);
             for (int i = 0; i < allAccount.Length; i++)
             {
                 if (allAccount[i] == "" || allAccount == null)
                     continue;
-                string[] account = allAccount[i].Split('-');
-                if (account[0] == sdt)
+                if (allAccount[i] == hashedInput)
                 {
                     exist = true;
                     break;
@@ -219,8 +232,8 @@ namespace Server
                 string[] insert = new string[allAccount.Length + 1];
                 // Copy mảng dữ liệu cũ vô mảng mới
                 Array.Copy(allAccount, insert, allAccount.Length);
-                insert[allAccount.Length] = sdt + "-" + matKhau;
-                File.WriteAllLines("Account.txt", insert);
+                insert[allAccount.Length] = hashedInput;
+                SaveAccountData(insert); // Sử dụng phương thức mã hóa
                 // Tạo folder Profile cho người dùng để lưu các thông tin riêng.
                 Directory.CreateDirectory("Profile/" + sdt);
                 Directory.CreateDirectory("Profile/" + sdt + "/History");
@@ -285,16 +298,16 @@ namespace Server
             // Đặt biến kiểm tra
             bool check = false;
             // Lưu dữ liệu file tài khoản người dùng
-            string[] tmp = File.ReadAllLines("Account.txt");
+            string[] tmp = LoadAccountData(); // Sử dụng phương thức giải mã
             // Check
+            string hashedOldPassword = HashSHA256(sdt + "-" + matKhauCu);
             for (int i = 0; i < tmp.Length; i++)
             {
                 if (tmp[i] == "")
                     continue;
-                string[] account = tmp[i].Split('-');
-                if (account[0] == sdt && account[1] == matKhauCu)
+                if (tmp[i] == hashedOldPassword)
                 {
-                    tmp[i] = sdt + "-" + matKhauMoi;
+                    tmp[i] = HashSHA256(sdt + "-" + matKhauMoi);
                     check = true;
                     break;
                 }
@@ -305,7 +318,7 @@ namespace Server
             }
             else
             {
-                File.WriteAllLines("Account.txt", tmp);
+                SaveAccountData(tmp); // Sử dụng phương thức mã hóa
                 SendData(socket, "1");
             }
         }
@@ -313,7 +326,7 @@ namespace Server
         public static void LoadOnlineUsers(Socket socket, string sdt)
         {
             // nhan = Lệnh - SĐT người gọi hàm
-            // Lấy ra tất cả Folder chứa thông tin của các User, lưu đường dẫn Folder vào mảng
+            // Lấy ra tất cả Folder chứa thông tin của các User, lưu đường dẫn Folder vo mảng
             string[] folderPath = Directory.GetDirectories("Profile");
             // Duyệt qua từng Folder, tìm thông tin người dùng nào đang Online thì trả về.
             for (int i = 0; i < folderPath.Length; i++)
@@ -483,6 +496,35 @@ namespace Server
             }
             SendRefreshNoitice();
         }
+        public static void NgatKetNoiGroupChat(string sdt, string nameGroup)
+        {
+            foreach (Clients client in lstClient)
+            {
+                if (client.Sdt.Equals(sdt))
+                {
+                    client.IsBusy = true;
+
+                    // Xóa số điện thoại trong file nhóm
+                    string path = "GroupFile/" + nameGroup + ".txt";
+                    if (File.Exists(path))
+                    {
+                        List<string> lines = new List<string>(File.ReadAllLines(path));
+
+                        // Lọc các dòng không chứa số điện thoại cần xóa
+                        lines = lines.Where(line => !line.Contains(sdt)).ToList();
+
+                        // Ghi lại các dòng còn lại vào file
+                        File.WriteAllLines(path, lines);
+                    }
+
+                    // Cập nhật trạng thái của client
+                    SendData(client.Socket, "OK");
+                    break; // Dừng vòng lặp khi đã xử lý xong client này
+                }
+            }
+            SendRefreshNoitice();
+        }
+
 
         public static void NgatKetNoiRandomChat(string sdt)
         {
@@ -577,6 +619,238 @@ namespace Server
                 }
             }
         }
+        public static void SendingGroupMessage(string nhan)
+        {
+            // nhan = Lệnh - SĐT - groupName - Message
+            string[] value = nhan.Split("-");
+            string sdt = value[1];
+            string groupName = value[2];
+
+            // Nối chuỗi nếu người dùng nhập các ký tự đặc biệt gây lỗi tin nhắn.
+            string message = "";
+            for (int i = 3; i < value.Length; i++)
+                message += value[i];
+            string userName = "";
+            // 0 = Tên; 1 = Giới Tính; 2 = Ngày Sinh; 3 = Trạng Thái; 4 = Login or Log out; 5 = Path Avatar; 6 = Email; 7 = Tiểu Sử
+            string[] info_User = File.ReadAllLines("Profile/" + sdt + "/Info.txt");
+            userName = info_User[0];
+
+            // Đọc danh sách các số điện thoại từ file nhóm
+            string path = "GroupFile/" + groupName + ".txt";
+            if (File.Exists(path))
+            {
+                string[] groupMembers = File.ReadAllLines(path);
+
+                foreach (string member in groupMembers)
+                {
+                    if (member.Equals(sdt))
+                        continue; // Bỏ qua bản thân
+
+                    foreach (Clients destination in lstClient)
+                    {
+                        if (destination.Sdt.Equals(member))
+                        {
+                            SendData(destination.Chatting, userName + ":" + message);
+
+                        }
+                    }
+                }
+
+                // Thêm tin nhắn vào lịch sử nhóm
+                AddToMessageGroupChat(sdt + ":" + userName + ":" + message, groupName); // Lưu vào lịch sử nhóm
+            }
+        }
+
+        public static void ForgotPassword_ChangePassword(Socket socket, string nhan)
+        {
+            // Nhận = Lệnh - SĐT - Mật Khẩu Mới
+            string[] tmp = nhan.Split('-');
+            string sdt = tmp[1];
+            string newPasswd = tmp[2];
+            // Đọc dữ liệu từ file tài khoản người dùng
+            string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
+            // Lọc ra dòng thông tin tương ứng để đổi.
+            for (int i = 0; i < allAccount.Length; i++)
+            {
+                if (allAccount[i].Equals(""))
+                    continue;
+                string[] account = allAccount[i].Split('-');
+                if (account[0].Equals(sdt))
+                {
+                    allAccount[i] = HashSHA256(sdt + "-" + newPasswd);
+                    SaveAccountData(allAccount); // Sử dụng phương thức mã hóa
+                    SendData(socket, "1");
+                    break;
+                }
+            }
+        }
+
+        public static void ForwardFile(Socket socket, string sdt, string sdt_DoiPhuong, string fileName, long fileSize)
+        {
+            try
+            {
+                // Tạo thư mục lưu trữ tạm thời cho file
+                string tempFilePath = Path.GetTempFileName();
+                using (FileStream fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write))
+                {
+                    byte[] buffer = new byte[4096];
+                    long totalBytesReceived = 0;
+
+                    // Nhận dữ liệu file từ client nguồn và lưu vào tệp tạm thời
+                    while (totalBytesReceived < fileSize)
+                    {
+                        // Nhận dữ liệu từ socket dưới dạng chuỗi mã hóa
+                        string chunk = RecieveData(socket);
+                        byte[] data = Convert.FromBase64String(chunk);
+                        fileStream.Write(data, 0, data.Length);
+                        totalBytesReceived += data.Length;
+                    }
+                }
+
+                // Đảm bảo thư mục lịch sử tồn tại
+                string senderHistoryDir = Path.GetDirectoryName($"Profile/{sdt}/History/{fileName}");
+                string receiverHistoryDir = Path.GetDirectoryName($"Profile/{sdt_DoiPhuong}/History/{fileName}");
+
+                if (!Directory.Exists(senderHistoryDir))
+                {
+                    Directory.CreateDirectory(senderHistoryDir);
+                }
+
+                if (!Directory.Exists(receiverHistoryDir))
+                {
+                    Directory.CreateDirectory(receiverHistoryDir);
+                }
+
+                // Lưu file vào lịch sử của cả hai client
+                string senderHistoryPath = $"Profile/{sdt}/History/{fileName}";
+                string receiverHistoryPath = $"Profile/{sdt_DoiPhuong}/History/{fileName}";
+
+                File.Copy(tempFilePath, senderHistoryPath, true);
+                File.Copy(tempFilePath, receiverHistoryPath, true);
+
+                // Xóa tệp tạm thời
+                File.Delete(tempFilePath);
+
+                string fileNameReceiving = Path.GetFileName(receiverHistoryPath);
+                long fileSizeReceiving = new FileInfo(receiverHistoryPath).Length;
+
+                foreach (Clients client in lstClient)
+                {
+                    if (client.Sdt.Equals(sdt))
+                    {
+                        // Tìm đối phương
+                        foreach (Clients destination in lstClient)
+                        {
+                            if (destination.Sdt.Equals(sdt_DoiPhuong))
+                            {
+                                // Tạo thông tin file và gửi
+                                string fileInfo = $"ReceivingFile-{fileNameReceiving}-{fileSizeReceiving}";
+                                SendData(destination.Chatting, fileInfo);
+
+                                // Gửi thông tin và nội dung file đến đối phương
+                                using (FileStream fileStream = new FileStream(receiverHistoryPath, FileMode.Open, FileAccess.Read))
+                                {
+                                    byte[] buffer = new byte[4096];
+                                    int bytesRead;
+
+                                    // Gửi dữ liệu file
+                                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        // Chuyển đổi dữ liệu thành chuỗi Base64 và gửi
+                                        string chunk = Convert.ToBase64String(buffer, 0, bytesRead);
+                                        SendData(destination.Chatting, chunk);
+                                    }
+                                }
+
+                                // Thêm tin nhắn vào file
+                                AddMessageToHistory(sdt, sdt_DoiPhuong, $"1FILE:{fileName}"); // Thêm vào lịch sử người gửi
+                                AddMessageToHistory(sdt_DoiPhuong, sdt, $"0FILE:{fileName}"); // Thêm vào lịch sử người nhận
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi chuyển tiếp file: {ex.Message}");
+            }
+        }
+        public static void ForwardFileGroup(Socket socket, string sdt, string groupName, string fileName, long fileSize)
+        {
+            try
+            {
+                // Tạo thư mục lưu trữ tạm thời cho file
+                string tempFilePath = Path.GetTempFileName();
+                using (FileStream fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write))
+                {
+                    byte[] buffer = new byte[4096];
+                    long totalBytesReceived = 0;
+
+                    // Nhận dữ liệu file từ client nguồn và lưu vào tệp tạm thời
+                    while (totalBytesReceived < fileSize)
+                    {
+                        // Nhận dữ liệu từ socket dưới dạng chuỗi mã hóa
+                        string chunk = RecieveData(socket);
+                        byte[] data = Convert.FromBase64String(chunk);
+                        fileStream.Write(data, 0, data.Length);
+                        totalBytesReceived += data.Length;
+                    }
+                }
+
+                // Đảm bảo thư mục lịch sử tồn tại
+                string historyDir = $"GroupFile/{groupName}";
+                if (!Directory.Exists(historyDir))
+                {
+                    Directory.CreateDirectory(historyDir);
+                }
+
+                // Lưu file vào lịch sử
+                string senderHistoryPath = Path.Combine(historyDir, fileName);
+                File.Copy(tempFilePath, senderHistoryPath, true);
+
+                // Xóa tệp tạm thời
+                File.Delete(tempFilePath);
+
+                string userName = "";
+                // 0 = Tên; 1 = Giới Tính; 2 = Ngày Sinh; 3 = Trạng Thái; 4 = Login or Log out; 5 = Path Avatar; 6 = Email; 7 = Tiểu Sử
+                string[] info_User = File.ReadAllLines("Profile/" + sdt + "/Info.txt");
+                userName = info_User[0];
+
+                // Gửi thông tin file và nội dung đến tất cả các thành viên trong nhóm
+                foreach (Clients client in lstClient)
+                {
+                    if (client.Sdt.Equals(sdt)) // Bỏ qua chính mình
+                    {
+                        continue;
+                    }
+
+                    // Gửi thông tin file đến thành viên
+                    string fileInfo = $"ReceivingFileGroup-{fileName}-{fileSize}-{userName}";
+                    SendData(client.Chatting, fileInfo);
+
+                    // Gửi nội dung file
+                    using (FileStream fileStream = new FileStream(senderHistoryPath, FileMode.Open, FileAccess.Read))
+                    {
+                        byte[] buffer = new byte[4096];
+                        int bytesRead;
+
+                        // Gửi dữ liệu file
+                        while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            // Chuyển đổi dữ liệu thành chuỗi Base64 và gửi
+                            string chunk = Convert.ToBase64String(buffer, 0, bytesRead);
+                            SendData(client.Chatting, chunk);
+                        }
+                    }
+                }
+                AddToMessageGroupChat(sdt + ":" + userName + ":" + $"FILE:{fileName}", groupName); // Lưu vào lịch sử nhóm
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi chuyển tiếp file: {ex.Message}");
+            }
+        }
 
         public static void SendingRandomMessage(string nhan)
         {
@@ -624,7 +898,7 @@ namespace Server
             string sdt = value[1];
             string path = "Profile/" + sdt + "/History/" + value[2] + ".txt";
             string message = "";
-            // Đọc file, gửi tin nhắn cho client.
+            // Đọc file, gửi tin nhn cho client.
             string[] data_chat = File.ReadAllLines(path);
             // Đổi trạng thái người dùng sang đang bận để load tin nhắn.
             foreach (Clients client in lstClient)
@@ -662,6 +936,48 @@ namespace Server
                 }
             }
         }
+        public static void LoadGroupChatMessage(Socket socket, string nhan)
+        {
+            // nhan = Lệnh - SĐT - GroupName
+            string[] value = nhan.Split("-");
+            string sdt = value[1];
+            string groupName = value[2];
+            string path = "GroupFile/History/" + groupName + ".txt";
+
+            // Kiểm tra xem file có tồn tại không
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("File không tồn tại: " + path);
+                return;
+            }
+
+            // Đọc file và gửi tin nhắn cho client.
+            string[] data_chat = File.ReadAllLines(path);
+
+            // Đổi trạng thái người dùng sang đang bận để load tin nhắn.
+            foreach (Clients client in lstClient)
+            {
+                if (client.Sdt.Equals(sdt))
+                {
+                    client.IsBusy = true; // Đánh dấu client đang bận.
+
+                    foreach (string line in data_chat)
+                    {
+                        // Bỏ qua phần tử rỗng hoặc null.
+                        if (string.IsNullOrEmpty(line))
+                            continue;
+
+                        // Gửi từng dòng tin nhắn cho client.
+                        SendData(socket, line);
+                    }
+
+                    // Gửi thông điệp kết thúc.
+                    SendData(socket, "-1");
+                    client.IsBusy = false;
+                    break; // Dừng vòng lặp khi đã xử lý xong client này.
+                }
+            }
+        }
 
         public static void LoadHistory(Socket socket, string sdt)
         {
@@ -691,7 +1007,121 @@ namespace Server
             }
             SendData(socket, "End");
         }
+        public static void JoinGroupChat(Socket socket, string sdt, string nameGroup)
+        {
+            AddToJoinGroupChat(sdt, nameGroup); // Thêm người tham gia vào nhóm
+        }
+        public static void AddToJoinGroupChat(string message, string name)
+        {
+            string path = "GroupFile/" + name + ".txt";
 
+            // Đọc tất cả các dòng từ file
+            HashSet<string> existingLines = new HashSet<string>(File.ReadAllLines(path));
+
+            if (!existingLines.Contains(message))
+            {
+                // Thêm tin nhắn vào tập hợp
+                existingLines.Add(message);
+
+                // Ghi tất cả các dòng vào file
+                File.WriteAllLines(path, existingLines);
+            }
+        }
+
+
+        public static void AddToMessageGroupChat(string message, string name)
+        {
+            string path = "GroupFile/History/" + name + ".txt";
+            // Ghi tin nhắn
+            string[] data = File.ReadAllLines(path);
+            // To mảng mới nhiều hơn 1 dòng để ghi dữ liệu
+            string[] insert = new string[data.Length + 1];
+            // Copy mảng cũ vô mảng mới gòi ghi đè file.
+            Array.Copy(data, insert, data.Length);
+            insert[data.Length] = message;
+            File.WriteAllLines(path, insert);
+        }
+        public static void LoadGroupChat(Socket socket)
+        {
+            try
+            {
+                string directoryPath = "GroupFile";
+
+                // Kiểm tra và tạo thư mục nếu không tồn tại
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                // Đọc toàn bộ sđt của các người dùng đã từng kết nối tới
+                string[] historyNumber = Directory.GetFiles("GroupFile/", "*.txt");
+
+                // Duyệt qua từng tên file, tìm tên v trả về.
+                foreach (string filePath in historyNumber)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
+                    SendData(socket, fileName);
+                }
+
+                SendData(socket, "End");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Đã xảy ra lỗi khi gửi dữ liệu: {ex.Message}");
+            }
+        }
+
+        public static void CreateGroupFile(string name)
+        {
+            string path = "GroupFile/" + name + ".txt";
+            // Kiểm tra và tạo thư mục nếu chưa tồn tại
+            string directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            // Tạo file nếu chưa tồn tại
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    // File sẽ được tạo ra và đóng khi ra khỏi khối using
+                }
+            }
+        }
+
+        public static void CreateGroupHistoryFile(string name)
+        {
+            string path = "GroupFile/History/" + name + ".txt";
+            // Kiểm tra và tạo thư mục nếu chưa tồn tại
+            string directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+            // Tạo file nếu chưa tồn tại
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    // File sẽ được tạo ra và đóng khi ra khỏi khối using
+                }
+            }
+        }
+
+        public static void CreateGroup(Socket socket, string nhan)
+        {
+            try
+            {
+                string[] value = nhan.Split("-");
+                CreateGroupFile(value[1]);
+                CreateGroupHistoryFile(value[1]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Đã xảy ra lỗi khi tạo file: {ex.Message}");
+            }
+        }
         public static void AddClientToRandomList(Socket socket, string sdt)
         {
             if (listRandoms.Count == 0)
@@ -841,7 +1271,7 @@ namespace Server
             string sdt = tmp[1];
             string email = tmp[2];
             // Tìm số điện thoại
-            string[] allAccount = File.ReadAllLines("Account.txt");
+            string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
             for (int i = 0; i < allAccount.Length; i++)
             {
                 if (allAccount[i].Equals(""))
@@ -870,14 +1300,14 @@ namespace Server
             }
         }
 
-        public static void ForgotPassword_ChangePassword(Socket socket, string nhan)
+        public static void ForgotPassword_ChangePasswordV2(Socket socket, string nhan)
         {
             // Nhận = Lệnh - SĐT - Mật Khẩu Mới
             string[] tmp = nhan.Split('-');
             string sdt = tmp[1];
             string newPasswd = tmp[2];
             // Đọc dữ liệu từ file tài khoản người dùng
-            string[] allAccount = File.ReadAllLines("Account.txt");
+            string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
             // Lọc ra dòng thông tin tương ứng để đổi.
             for (int i = 0; i < allAccount.Length; i++)
             {
@@ -886,8 +1316,8 @@ namespace Server
                 string[] account = allAccount[i].Split('-');
                 if (account[0].Equals(sdt))
                 {
-                    allAccount[i] = sdt + "-" + newPasswd;
-                    File.WriteAllLines("Account.txt", allAccount);
+                    allAccount[i] = HashSHA256(sdt + "-" + newPasswd);
+                    SaveAccountData(allAccount); // Sử dụng phương thức mã hóa
                     SendData(socket, "1");
                     break;
                 }
@@ -949,6 +1379,9 @@ namespace Server
                         case "LoadHistory":
                             LoadHistory(socket, tmp[1]);
                             break;
+                        case "SendingFile":
+                            ForwardFile(socket, tmp[1], tmp[2], tmp[3], long.Parse(tmp[4]));
+                            break;
                         case "SendingMessage":
                             SendingMessage(nhan);
                             break;
@@ -958,12 +1391,101 @@ namespace Server
                         case "LoadHistoryMessage":
                             LoadHistoryMessage(socket, nhan);
                             break;
+                        case "CreateGroup":
+                            CreateGroup(socket, nhan);
+                            break;
+                        case "LoadGroudChat":
+                            LoadGroupChat(socket);
+                            break;
+                        case "JoinGroupChat":
+                            JoinGroupChat(socket, tmp[1], tmp[2]);
+                            break;
+                        case "LoadGroupChatMessage":
+                            LoadGroupChatMessage(socket, nhan);
+                            break;
+                        case "NgatKetNoiGroupChat":
+                            NgatKetNoiGroupChat(tmp[1], tmp[2]);
+                            break;
+                        case "SendingGroupFile":
+                            ForwardFileGroup(socket, tmp[1], tmp[2], tmp[3], long.Parse(tmp[4]));
+                            break;
+                        case "SendingGroupMessage":
+                            SendingGroupMessage(nhan);
+                            break;
                     }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
+            }
+        }
+
+        public static string Encrypt(string plainText)
+        {
+            string key = GetEncryptionKey();
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(key);
+                aes.IV = new byte[16]; // IV mặc định là 0
+
+                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter sw = new StreamWriter(cs))
+                        {
+                            sw.Write(plainText);
+                        }
+                    }
+                    return Convert.ToBase64String(ms.ToArray());
+                }
+            }
+        }
+
+        public static string Decrypt(string cipherText)
+        {
+            string key = GetEncryptionKey();
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(key);
+                aes.IV = new byte[16]; // IV mặc định là 0
+
+                ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(cipherText)))
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader sr = new StreamReader(cs))
+                        {
+                            return sr.ReadToEnd();
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void SaveAccountData(string[] accountData)
+        {
+            string[] hashedData = accountData.Select(data => HashSHA256(data)).ToArray();
+            File.WriteAllLines("Account.txt", hashedData);
+        }
+
+        public static string[] LoadAccountData()
+        {
+            return File.ReadAllLines("Account.txt");
+        }
+
+        public static string HashSHA256(string data)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(data);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
             }
         }
 
@@ -994,7 +1516,7 @@ namespace Server
                         try
                         {
                             nhan = RecieveData(socket);
-                            Console.WriteLine(nhan);
+                            //Console.WriteLine(nhan);
                             string[] tmp = nhan.Split('-');
                             // Chuỗi đầu luôn là từ khoá để gọi hàm
                             if (tmp[0].Equals("CancelLogin"))

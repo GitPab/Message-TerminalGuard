@@ -415,6 +415,11 @@ namespace Client
             historyForm.Show();
         }
 
+        private void group_Click(object sender, EventArgs e)
+        {
+            MainLayout.GroupForm groupForm = new MainLayout.GroupForm(sdtLogin);
+            groupForm.Show();
+        }
         // End
     }
 }

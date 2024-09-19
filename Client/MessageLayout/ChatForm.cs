@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 
 namespace Client
 {
@@ -91,14 +84,29 @@ namespace Client
                 }
                 else
                 {
-                    if (nhan.Substring(0, 1).Equals("1")) // Tin nhắn của mình
+                    if (nhan.Substring(0, 1).Equals("1")) 
                     {
-                        AddMyHistoryChat(nhan.Substring(1));
+                        if (nhan.Substring(1).StartsWith("FILE:"))
+                        {
+                            AddMyHistoryFile(nhan.Substring(1));
+                        }
+                        else
+                        {
+                            AddMyHistoryChat(nhan.Substring(1));
+                        }
                     }
                     else
                     {
-                        AddTheyHistoryChat(nhan.Substring(1));
+                        if (nhan.Substring(1).StartsWith("FILE:"))
+                        {
+                            AddTheyHistoryFile(nhan.Substring(1));
+                        }
+                        else
+                        {
+                            AddTheyHistoryChat(nhan.Substring(1));
+                        }
                     }
+
                 }
 
             }
@@ -122,9 +130,80 @@ namespace Client
                 {
                     t.Abort();
                     break;
-                }    
-                AddTheyChat(nhan);
+                }
+                if (nhan.StartsWith("ReceivingFile-"))
+                {
+                    HandleFileMessage(nhan);
+                }else
+                {
+                    AddTheyChat(nhan);
+                }
             }
+        }
+        void HandleFileMessage(string fileMessage)
+        {
+            // Phân tích thông tin file
+            string[] parts = fileMessage.Split('-');
+            if (parts.Length != 3)
+            {
+                Console.WriteLine("Thông tin file không hợp lệ.");
+                return;
+            }
+
+            string fileName = parts[1];
+            long fileSize;
+            if (!long.TryParse(parts[2], out fileSize))
+            {
+                Console.WriteLine("Kích thước file không hợp lệ.");
+                return;
+            }
+
+            // Tạo thư mục lưu trữ tạm thời cho file
+            string tempFilePath = Path.GetTempFileName();
+            using (FileStream fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write))
+            {
+                byte[] buffer = new byte[4096];
+                long totalBytesReceived = 0;
+
+                // Nhận dữ liệu file từ socket và lưu vào tệp tạm thời
+                while (totalBytesReceived < fileSize)
+                {
+                    string chunk = GlobalConnect.RecieveData(GlobalConnect.chatting);
+                    byte[] data = Convert.FromBase64String(chunk);
+                    fileStream.Write(data, 0, data.Length);
+                    totalBytesReceived += data.Length;
+                }
+            }
+            string senderHistoryDir = Path.GetDirectoryName($"Profile/History/{fileName}");
+
+            if (!Directory.Exists(senderHistoryDir))
+            {
+                Directory.CreateDirectory(senderHistoryDir);
+            }
+
+            string senderHistoryPath = $"Profile/History/{fileName}";
+
+            File.Copy(tempFilePath, senderHistoryPath, true);
+
+            // Hiển thị thông tin file lên view
+            AddFileToView(senderHistoryPath);
+
+        }
+        void AddFileToView(string filePath)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    AddFileToView(filePath);
+                });
+                return;
+            }
+
+            CommingFile commingFile = new CommingFile();
+            commingFile.FilePath = filePath;
+            flowLayoutPanel.Controls.Add(commingFile);
+            flowLayoutPanel.ScrollControlIntoView(commingFile);
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
@@ -177,6 +256,26 @@ namespace Client
             flowLayoutPanel.ScrollControlIntoView(commingMessage);
         }
 
+        void AddMyHistoryFile(string fileName)
+        {
+            string[] parts = fileName.Split(':');
+            string filePath = $"Profile/History/{parts[1]}";
+            GoingFile goingFile = new GoingFile();
+            goingFile.FilePath = filePath;
+            flowLayoutPanel.Controls.Add(goingFile);
+            flowLayoutPanel.ScrollControlIntoView(goingFile);
+        }
+
+        void AddTheyHistoryFile (string fileName)
+        {
+            string[] parts = fileName.Split(':');
+            string filePath = $"Profile/History/{parts[1]}";
+            CommingFile goingFile = new CommingFile();
+            goingFile.FilePath = filePath;
+            flowLayoutPanel.Controls.Add(goingFile);
+            flowLayoutPanel.ScrollControlIntoView(goingFile);
+        }
+
         void AddMyChat(string text)
         {
             if (text.Equals("-1-EndChat"))
@@ -214,15 +313,15 @@ namespace Client
                 commingMessage.Message = text;
                 flowLayoutPanel.Controls.Add(commingMessage);
                 flowLayoutPanel.ScrollControlIntoView(commingMessage);
-            }    
+            }
         }
 
         private void Click_Enter(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 AddMyChat(txt_Message.Text);
-            }    
+            }
         }
 
         public void SendingMessage(string message)
@@ -242,5 +341,66 @@ namespace Client
                 ac.ShowDialog();
             }
         }
+
+        private void btn_SendFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                string fileName = Path.GetFileName(filePath);
+
+
+                string senderHistoryDir = Path.GetDirectoryName($"Profile/History/{fileName}");
+
+                if (!Directory.Exists(senderHistoryDir))
+                {
+                    Directory.CreateDirectory(senderHistoryDir);
+                }
+
+                string senderHistoryPath = $"Profile/History/{fileName}";
+
+                File.Copy(filePath, senderHistoryPath, true);
+
+                GoingFile goingFile = new GoingFile();
+                goingFile.FilePath = senderHistoryPath;
+                goingFile.Padding = new Padding(0, 0, 10, 0);
+                flowLayoutPanel.Controls.Add(goingFile);
+                flowLayoutPanel.ScrollControlIntoView(goingFile); 
+
+                SendFile(filePath);
+            }
+        }
+        private void SendFile(string filePath)
+        {
+            try
+            {
+                string fileName = Path.GetFileName(filePath);
+                long fileSize = new FileInfo(filePath).Length;
+
+                // Tạo thông tin file và gửi
+                string fileInfo = $"SendingFile-{sdt}-{sdt_DoiPhuong}-{fileName}-{fileSize}";
+                GlobalConnect.SendData(GlobalConnect.svcn, fileInfo);
+
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+
+                    // Gửi dữ liệu file
+                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        // Chuyển đổi dữ liệu thành chuỗi Base64 và gửi
+                        string chunk = Convert.ToBase64String(buffer, 0, bytesRead);
+                        GlobalConnect.SendData(GlobalConnect.svcn, chunk);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi gửi file: {ex.Message}");
+            }
+        }
+
     }
 }

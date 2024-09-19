@@ -75,17 +75,44 @@
     <Compile Include="MainLayout\ChangePasswordForm.Designer.cs">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLayout\GroupForm .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLayout\GroupForm .Designer.cs">
+      <DependentUpon>GroupForm .cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLayout\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainLayout\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLayout\GroupChat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainLayout\GroupChat.Designer.cs">
+      <DependentUpon>GroupChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLayout\HistoryUsers.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MainLayout\HistoryUsers.Designer.cs">
       <DependentUpon>HistoryUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLayout\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageLayout\Comming.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageLayout\Comming.Designer.cs">
+      <DependentUpon>Comming.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageLayout\GroupChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageLayout\GroupChatForm.Designer.cs">
+      <DependentUpon>GroupChatForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageLayout\ChatForm.cs">
       <SubType>Form</SubType>
@@ -99,11 +126,23 @@
     <Compile Include="MainLayout\ChooseAvatar.Designer.cs">
       <DependentUpon>ChooseAvatar.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageLayout\CommingFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageLayout\CommingFile.Designer.cs">
+      <DependentUpon>CommingFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="MessageLayout\CommingMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MessageLayout\CommingMessage.Designer.cs">
       <DependentUpon>CommingMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageLayout\GoingFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageLayout\GoingFile.Designer.cs">
+      <DependentUpon>GoingFile.cs</DependentUpon>
     </Compile>
     <Compile Include="Notify\CustomDialogNotification.cs">
       <SubType>Form</SubType>
@@ -174,11 +213,23 @@
     <EmbeddedResource Include="MainLayout\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLayout\GroupForm .resx">
+      <DependentUpon>GroupForm .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLayout\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLayout\GroupChat.resx">
+      <DependentUpon>GroupChat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLayout\HistoryUsers.resx">
       <DependentUpon>HistoryUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageLayout\Comming.resx">
+      <DependentUpon>Comming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageLayout\GroupChatForm.resx">
+      <DependentUpon>GroupChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageLayout\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
@@ -186,8 +237,14 @@
     <EmbeddedResource Include="MainLayout\ChooseAvatar.resx">
       <DependentUpon>ChooseAvatar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MessageLayout\CommingFile.resx">
+      <DependentUpon>CommingFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageLayout\CommingMessage.resx">
       <DependentUpon>CommingMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageLayout\GoingFile.resx">
+      <DependentUpon>GoingFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Notify\CustomDialogNotification.resx">
       <DependentUpon>CustomDialogNotification.cs</DependentUpon>

@@ -38,20 +38,22 @@
             this.MessageIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MessageIn.ForeColor = System.Drawing.Color.Black;
             this.MessageIn.Location = new System.Drawing.Point(0, 0);
+            this.MessageIn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MessageIn.Name = "MessageIn";
-            this.MessageIn.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.MessageIn.Size = new System.Drawing.Size(248, 21);
+            this.MessageIn.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.MessageIn.Size = new System.Drawing.Size(331, 26);
             this.MessageIn.TabIndex = 0;
             this.MessageIn.Text = "label1";
             // 
             // CommingMessage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.MessageIn);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CommingMessage";
-            this.Size = new System.Drawing.Size(400, 21);
+            this.Size = new System.Drawing.Size(533, 26);
             this.ResumeLayout(false);
 
         }
