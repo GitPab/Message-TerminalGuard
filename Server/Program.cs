@@ -18,10 +18,10 @@ namespace Server
         static LinkedList<InfoRandomClients> listRandoms;
         private static string GetEncryptionKey()
         {
-            string key = Environment.GetEnvironmentVariable("ENCRYPTION_KEY");
+            string key = Configuration.GetEncryptionKey(); // Lấy khóa từ lớp Configuration
             if (string.IsNullOrEmpty(key))
             {
-                throw new InvalidOperationException("Encryption key not found in environment variables.");
+                throw new InvalidOperationException("Encryption key not found in configuration.");
             }
             return key;
         }
@@ -142,7 +142,9 @@ namespace Server
             // Lưu dữ liệu File tài khoản người dùng
             string[] tmp = LoadAccountData(); // Sử dụng phương thức giải mã
             // Check
-            string hashedInput = HashSHA256(sdt + "-" + matkhau);
+            string hashedInputSdt = HashSHA256(sdt);
+            string hashedInputMk = HashSHA256(matkhau);
+            string hashedInput = hashedInputSdt + "-" + hashedInputMk;
             for (int i = 0; i < tmp.Length; i++)
             {
                 if (tmp[i].Equals(""))
@@ -211,13 +213,15 @@ namespace Server
             string matKhau = info[5];
             // Bt đầu kiểm tra tài khoản tồn tại hay chưa
             bool exist = false;
-            string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
-            string hashedInput = HashSHA256(sdt + "-" + matKhau);
+            string[] allAccount = LoadAccountData(); // Sử dụng lấy các tài khoản
+            string hashedSdt = HashSHA256(sdt);
+            string hashedMk = HashSHA256(matKhau);
+            string hashedInput = hashedSdt + "-" + hashedMk;
             for (int i = 0; i < allAccount.Length; i++)
             {
                 if (allAccount[i] == "" || allAccount == null)
                     continue;
-                if (allAccount[i] == hashedInput)
+                if (allAccount[i].Split('-')[0] == hashedSdt)
                 {
                     exist = true;
                     break;
@@ -300,14 +304,18 @@ namespace Server
             // Lưu dữ liệu file tài khoản người dùng
             string[] tmp = LoadAccountData(); // Sử dụng phương thức giải mã
             // Check
-            string hashedOldPassword = HashSHA256(sdt + "-" + matKhauCu);
+            string hashedOldStd = HashSHA256(sdt);
+            string hashedOldMk = HashSHA256(matKhauCu);
+            string hashedNewStd = HashSHA256(sdt);
+            string hashedNewMk = HashSHA256(matKhauMoi);
+            string hashedOldPassword = hashedOldStd + "-" + hashedOldMk;
             for (int i = 0; i < tmp.Length; i++)
             {
                 if (tmp[i] == "")
                     continue;
                 if (tmp[i] == hashedOldPassword)
                 {
-                    tmp[i] = HashSHA256(sdt + "-" + matKhauMoi);
+                    tmp[i] = hashedNewStd + "-" + hashedNewMk;
                     check = true;
                     break;
                 }
@@ -670,6 +678,8 @@ namespace Server
             // Đọc dữ liệu từ file tài khoản người dùng
             string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
             // Lọc ra dòng thông tin tương ứng để đổi.
+            string hashedSdt = HashSHA256(sdt);
+            string hashedMk = HashSHA256(newPasswd);
             for (int i = 0; i < allAccount.Length; i++)
             {
                 if (allAccount[i].Equals(""))
@@ -677,7 +687,7 @@ namespace Server
                 string[] account = allAccount[i].Split('-');
                 if (account[0].Equals(sdt))
                 {
-                    allAccount[i] = HashSHA256(sdt + "-" + newPasswd);
+                    allAccount[i] = hashedSdt + "-" + hashedMk;
                     SaveAccountData(allAccount); // Sử dụng phương thức mã hóa
                     SendData(socket, "1");
                     break;
@@ -1089,6 +1099,22 @@ namespace Server
                 }
             }
         }
+        public static void DeleteGroupFile(string name)
+        {
+            string path = "GroupFile/" + name + ".txt";
+            string pathHistory = "GroupFile/History/" + name + ".txt";
+
+            // Xóa file nếu đã tồn tại
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            if (File.Exists(pathHistory))
+            {
+                File.Delete(pathHistory);
+            }
+        }
 
         public static void CreateGroupHistoryFile(string name)
         {
@@ -1116,12 +1142,45 @@ namespace Server
                 string[] value = nhan.Split("-");
                 CreateGroupFile(value[1]);
                 CreateGroupHistoryFile(value[1]);
+                AddToJoinGroupChat(value[2], value[1]); // Thêm người tham gia vào nhóm
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Đã xảy ra lỗi khi tạo file: {ex.Message}");
             }
         }
+        public static void DeleteGroupChat(Socket socket, string sdt, string groupName)
+        {
+            try
+            {
+                string path = "GroupFile/" + groupName + ".txt";
+
+                // Đọc tất cả các dòng từ file
+                var lines = File.ReadAllLines(path);
+
+                // Kiểm tra nếu file có ít nhất một dòng
+                if (lines.Length == 0)
+                {
+                    SendData(socket, "1");
+                }
+
+                // So sánh dòng đầu tiên với sdt
+                if (lines[0] == sdt)
+                {
+                    // Xóa file
+                    DeleteGroupFile(groupName);
+                    SendData(socket, "0");
+                }else
+                {
+                    SendData(socket, "1");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Đã xảy ra lỗi khi xóa nhóm: {ex.Message}");
+            }
+        }
+
         public static void AddClientToRandomList(Socket socket, string sdt)
         {
             if (listRandoms.Count == 0)
@@ -1308,6 +1367,8 @@ namespace Server
             string newPasswd = tmp[2];
             // Đọc dữ liệu từ file tài khoản người dùng
             string[] allAccount = LoadAccountData(); // Sử dụng phương thức giải mã
+            string hashedSdt = HashSHA256(sdt);
+            string hashedMk = HashSHA256(newPasswd);
             // Lọc ra dòng thông tin tương ứng để đổi.
             for (int i = 0; i < allAccount.Length; i++)
             {
@@ -1316,7 +1377,7 @@ namespace Server
                 string[] account = allAccount[i].Split('-');
                 if (account[0].Equals(sdt))
                 {
-                    allAccount[i] = HashSHA256(sdt + "-" + newPasswd);
+                    allAccount[i] = hashedSdt + "-" + hashedMk;
                     SaveAccountData(allAccount); // Sử dụng phương thức mã hóa
                     SendData(socket, "1");
                     break;
@@ -1412,6 +1473,9 @@ namespace Server
                         case "SendingGroupMessage":
                             SendingGroupMessage(nhan);
                             break;
+                        case "DeleteGroupChat":
+                            DeleteGroupChat(socket, tmp[1], tmp[2]); ;
+                            break;
                     }
                 }
                 catch (Exception e)
@@ -1470,8 +1534,7 @@ namespace Server
 
         public static void SaveAccountData(string[] accountData)
         {
-            string[] hashedData = accountData.Select(data => HashSHA256(data)).ToArray();
-            File.WriteAllLines("Account.txt", hashedData);
+            File.WriteAllLines("Account.txt", accountData);
         }
 
         public static string[] LoadAccountData()

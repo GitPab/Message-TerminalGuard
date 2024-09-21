@@ -32,10 +32,10 @@ namespace Client
 
         private static string GetEncryptionKey()
         {
-            string key = Environment.GetEnvironmentVariable("ENCRYPTION_KEY");
+            string key = Configuration.GetEncryptionKey(); // Lấy khóa từ lớp Configuration
             if (string.IsNullOrEmpty(key))
             {
-                throw new InvalidOperationException("Encryption key not found in environment variables.");
+                throw new InvalidOperationException("Encryption key not found in configuration.");
             }
             return key;
         }

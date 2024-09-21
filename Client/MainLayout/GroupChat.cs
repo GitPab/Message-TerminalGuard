@@ -30,5 +30,10 @@ namespace Client.MainLayout
         {
             GroupForm.groupForm.LoadGroupMessage(groupName);
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            GroupForm.groupForm.DeleteGroupMessage(groupName);
+        }
     }
 }

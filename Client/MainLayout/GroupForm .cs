@@ -50,7 +50,7 @@ namespace Client.MainLayout
                     string groupName = inputBox.InputText;
                     if (!string.IsNullOrWhiteSpace(groupName))
                     {
-                        string fileInfo = $"CreateGroup-{groupName}";
+                        string fileInfo = $"CreateGroup-{groupName}-{sdtLogin}";
                         GlobalConnect.SendData(GlobalConnect.svcn, fileInfo);
                         LoadGroupChat();
                     }
@@ -92,6 +92,28 @@ namespace Client.MainLayout
 
             // Lưu trữ tham chiếu đến GroupChatForm
             groupMessage = groupChatForm;
+        }
+        public void DeleteGroupMessage(string groupName)
+        {
+            if (groupMessage != null)
+            {
+                groupMessage.Close();
+            }
+
+            // Gửi yêu cầu tham gia nhóm chat
+            GlobalConnect.SendData(GlobalConnect.svcn, "DeleteGroupChat-" + sdtLogin + "-" + groupName);
+            string nhan = "";
+            nhan = GlobalConnect.RecieveData(GlobalConnect.svcn);
+            if (nhan != "0")
+            {
+                MessageBox.Show("Bạn không có quyền xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+                MessageBox.Show("Xóa nhóm chat thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadGroupChat();
+            }
         }
     }
 }

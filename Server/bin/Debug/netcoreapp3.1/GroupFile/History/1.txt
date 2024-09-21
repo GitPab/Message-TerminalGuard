@@ -1,6 +1,2 @@
-0987654321:Nguyễn Bích:FILE:1.docx
-0123456789:Nguyễn Bách:wow
-0987654321:Nguyễn Bích:thật sao
-0123456789:Nguyễn Bách:thật
-0192837465:Nguyễn Bắc:wow
-0192837465:Nguyễn Bắc:amazing good job
+0123456789:Nguyễn Bách:Hello
+0987654321:Nguyễn Bích:Hi
